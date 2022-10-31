@@ -1,6 +1,7 @@
 package com.illiapinchuk.testtask.model;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class User extends BaseEntity{
     private String lastName;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 }

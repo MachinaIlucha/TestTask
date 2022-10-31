@@ -1,7 +1,5 @@
 package com.illiapinchuk.testtask.controller;
 
-import com.illiapinchuk.testtask.exception.UserNotFoundException;
-import com.illiapinchuk.testtask.model.User;
 import com.illiapinchuk.testtask.model.dto.UserDto;
 import com.illiapinchuk.testtask.service.interfacies.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,7 +8,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +28,6 @@ public class UserRestController {
     private static final String USER_GET_LOG = "User with id: {} was found";
 
     @Autowired
-    private ModelMapper modelMapper;
-
-    @Autowired
     private UserService userService;
 
     @Operation(summary = "Get user by its id")
@@ -42,9 +36,7 @@ public class UserRestController {
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content)})
     @GetMapping(path = "/{userId}")
     public ResponseEntity<UserDto> getUserById(@PathVariable(value = ID) Long userId){
-        User user = userService.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
-        UserDto userResponse = modelMapper.map(user, UserDto.class);
+       UserDto userResponse = userService.findById(userId);
 
         log.info(USER_GET_LOG, userId);
 

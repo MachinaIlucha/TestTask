@@ -1,11 +1,9 @@
 package com.illiapinchuk.testtask.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
 
 /**
  * Incoming DTO to create a new record of {@link com.illiapinchuk.testtask.model.User}
@@ -27,9 +25,4 @@ public class UserDto {
 
     @JsonProperty
     private int age;
-
-    @JsonProperty(required = true)
-    @JsonFormat(pattern="dd-MM-yyyy")
-    private LocalDate dateOfBirth;
-
 }

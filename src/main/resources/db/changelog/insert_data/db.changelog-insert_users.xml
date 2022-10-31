@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="1.0.0" author="illia.pinchuk">
+        <insert tableName="users">
+            <column name="id" value="1" />
+            <column name="first_name" value="student1 first name" />
+            <column name="last_name" value="student1 last name" />
+            <column name="date_of_birth" value="2003-03-26" />
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="2" />
+            <column name="first_name" value="student2 first name" />
+            <column name="last_name" value="student2 last name" />
+            <column name="date_of_birth" value="2001-10-03" />
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="3" />
+            <column name="first_name" value="student3 first name" />
+            <column name="last_name" value="student3 last name" />
+            <column name="date_of_birth" value="1999-12-31" />
+        </insert>
+
+        <rollback>
+            Delete from users;
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
